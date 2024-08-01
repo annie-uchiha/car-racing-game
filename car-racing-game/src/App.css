@@ -8,23 +8,29 @@
 
 .track {
   position: relative;
-  width: 800px;
+  width: 400px;
   height: 600px;
   background: url('./images/race-track-background.jpg') no-repeat center center;
   background-size: cover;
+  overflow: hidden;
+  border: 2px solid #000;
 }
 
 .car {
-  position: absolute;
   width: 50px;
-  height: 100px;
+  height: 70px;
+  position: absolute;
+  bottom: 120px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url('./images/car.png'); 
 }
 
 .player-car {
   background-color: red;
 }
 
-.obstacle-car {
+.enemy-car {
   background-color: green;
 }
 

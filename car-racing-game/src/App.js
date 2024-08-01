@@ -1,15 +1,15 @@
-// src/App.js
 import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
+import carImage from './images/car.png'; 
 
 const CAR_WIDTH = 50;
-const CAR_HEIGHT = 100;
-const TRACK_WIDTH = 800;
+const CAR_HEIGHT = 70;
+const TRACK_WIDTH = 400;
 const TRACK_HEIGHT = 600;
 const OBSTACLE_SPEED = 5;
 
 function App() {
-  const [playerPosition, setPlayerPosition] = useState({ x: TRACK_WIDTH / 2, y: TRACK_HEIGHT - CAR_HEIGHT });
+  const [playerPosition, setPlayerPosition] = useState({ x: TRACK_WIDTH / 2 - CAR_WIDTH / 2, y: TRACK_HEIGHT - CAR_HEIGHT });
   const [obstaclePosition, setObstaclePosition] = useState({ x: Math.random() * (TRACK_WIDTH - CAR_WIDTH), y: 0 });
   const [score, setScore] = useState(0);
   const [isGameOver, setIsGameOver] = useState(false);
@@ -72,7 +72,7 @@ function App() {
   };
 
   const restartGame = () => {
-    setPlayerPosition({ x: TRACK_WIDTH / 2, y: TRACK_HEIGHT - CAR_HEIGHT });
+    setPlayerPosition({ x: TRACK_WIDTH / 2 - CAR_WIDTH / 2, y: TRACK_HEIGHT - CAR_HEIGHT });
     setObstaclePosition({ x: Math.random() * (TRACK_WIDTH - CAR_WIDTH), y: 0 });
     setScore(0);
     setIsGameOver(false);
@@ -92,7 +92,7 @@ function App() {
           style={{ left: playerPosition.x, top: playerPosition.y }}
         ></div>
         <div
-          className="car obstacle-car"
+          className="car enemy-car"
           style={{ left: obstaclePosition.x, top: obstaclePosition.y }}
         ></div>
         {isGameOver && (
