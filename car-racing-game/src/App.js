@@ -7,6 +7,7 @@ const CAR_HEIGHT = 70;
 const TRACK_WIDTH = 400;
 const TRACK_HEIGHT = 600;
 const OBSTACLE_SPEED = 5;
+const PLAYER_MOVE_DISTANCE = 10;
 
 function App() {
   const [playerPosition, setPlayerPosition] = useState({ x: TRACK_WIDTH / 2 - CAR_WIDTH / 2, y: TRACK_HEIGHT - CAR_HEIGHT });
@@ -23,7 +24,7 @@ function App() {
         moveObstacle();
         checkCollision();
       }
-    }, 50);
+    }, 10);
 
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
@@ -34,12 +35,13 @@ function App() {
   const handleKeyDown = (e) => {
     if (isGameOver) return;
 
-    const { x, y } = playerPosition;
+    const { x } = playerPosition;
+
     if (e.key === 'ArrowLeft' && x > 0) {
-      setPlayerPosition({ x: x - 10, y });
+      setPlayerPosition((prev) => ({ ...prev, x: x - PLAYER_MOVE_DISTANCE }));
     }
     if (e.key === 'ArrowRight' && x < TRACK_WIDTH - CAR_WIDTH) {
-      setPlayerPosition({ x: x + 10, y });
+      setPlayerPosition((prev) => ({ ...prev, x: x + PLAYER_MOVE_DISTANCE }));
     }
   };
 
@@ -81,7 +83,7 @@ function App() {
         moveObstacle();
         checkCollision();
       }
-    }, 50);
+    }, 30);
   };
 
   return (
